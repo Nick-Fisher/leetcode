@@ -10,7 +10,7 @@ Output: true
 
 */
 
-function containsDuplicate(nums: number[]): boolean {
+function containsDuplicate1(nums: number[]): boolean {
     const table: Record<string, number>= {};
 
     for (let i = 0; i < nums.length; i++) {
@@ -24,4 +24,13 @@ function containsDuplicate(nums: number[]): boolean {
     return false;
 };
 
-containsDuplicate([1,2,3,1])
+containsDuplicate1([1,2,3,1])
+
+
+function containsDuplicate2(nums: number[]): boolean {
+    const set = new Set(nums);
+    
+    return set.size !== nums.length;
+};
+
+containsDuplicate2([1,2,3,1])
