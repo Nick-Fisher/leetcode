@@ -1,0 +1,26 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "Problems from leetcode, codewars etc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nick-Fisher/leetcode.git"
+  },
+  "author": "Nick Fisher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nick-Fisher/leetcode/issues"
+  },
+  "homepage": "https://github.com/Nick-Fisher/leetcode#readme",
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.35",
+    "ts-node": "^10.8.0"
+  }
+}
