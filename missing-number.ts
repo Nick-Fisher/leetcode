@@ -22,3 +22,11 @@ function missingNumber(nums: number[]): number {
 };
 
 missingNumber([3,0,1])
+
+/**
+ * 
+ * It calls triangular number and we can calculate sum of the n natural numbers from 1 to n by the following explicit formulas:
+ * 
+ *  n * (n + 1) / 2
+ * 
+ */
