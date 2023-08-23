@@ -21,7 +21,7 @@ function cycleSort(nums: number[]) {
     if (nums[i] !== nums[pos]) {
       [nums[i], nums[pos]] = [nums[pos], nums[i]];
     } else {
-      i += 1;
+      i++;
     }
   }
   return nums;

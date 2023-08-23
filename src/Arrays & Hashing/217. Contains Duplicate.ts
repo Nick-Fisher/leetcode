@@ -10,13 +10,15 @@ Output: true
 
 */
 
+// Complexity: time O(n), space O(n)
+
 function containsDuplicate1(nums: number[]): boolean {
-    const table: Record<string, number>= {};
+    const hashMap: Record<string, number>= {};
 
     for (let i = 0; i < nums.length; i++) {
-        table[nums[i]] = table[nums[i]] || 0;
-        table[nums[i]] += 1;
-        if (table[nums[i]] > 1) {
+        hashMap[nums[i]] = hashMap[nums[i]] || 0;
+        hashMap[nums[i]] += 1;
+        if (hashMap[nums[i]] > 1) {
             return true;
         }
     }
