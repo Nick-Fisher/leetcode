@@ -12,6 +12,8 @@ Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0
 
 */
 
+// Complexity: time O(n), space O(1)
+
 function missingNumber(nums: number[]): number {
     const n = nums.length;
     let sum = 0;
@@ -30,3 +32,18 @@ missingNumber([3,0,1])
  *  n * (n + 1) / 2
  * 
  */
+
+// Complexity: time O(n), space O(n)
+
+function missingNumber2(nums: number[]) {
+    if (nums.length === 1 && nums[0] !== 0) return 0;
+    const sorted: any = Array.from({ length: nums.length + 1 }, () => null);
+
+    for (let i = 0; i < nums.length; i++) {
+        sorted[nums[i]] = nums[i];  
+    }
+
+    for (let j = 0; j < sorted.length; j++) {
+        if (!sorted[j] && sorted[j] !== 0) return j;
+    }
+};
