@@ -52,7 +52,7 @@ const threeSum = (nums: number[]): number[][] => {
 
   }
 
-  return [[]];
+  return result;
 };
 
 
