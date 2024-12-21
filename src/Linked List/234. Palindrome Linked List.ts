@@ -10,16 +10,7 @@
  *  Time Complexity: O(n), Space Complexity: O(1)
  */
 
-class ListNode {
-  val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
-  }
-}
-
-function isPalindrome(head: ListNode | null): boolean {
+function isLinkedListPalindrome(head: ListNode | null): boolean {
   let slow = head;
   let fast = head;
 
