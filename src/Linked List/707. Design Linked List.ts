@@ -11,32 +11,83 @@
  * 
  */
 
-class LLNode<T> {
-  value: T;
-  next: Node;
+class TNode {
+  public value: number;
+  public next: TNode;
+
+  constructor(value, next) {
+    this.value = value || 0;
+    this.next = next || null;
+  }
 }
 
 class MyLinkedList {
-  private head: LLNode<number>;
-  private tail: LLNode<number>;
+  private head: TNode | null;
+  private size: number = 0;
 
   constructor() {}
 
-  get(index: number): number {}
+  get(index: number): number {
+    if (index < 0 || index >= this.size) return -1;
 
-  addAtHead(val: number): void {}
+    return this._get(index)?.value;
+  }
 
-  addAtTail(val: number): void {}
+  _get(index: number): TNode | null {
+    let current = this.head;
+    for (let i = 0; i < index; i++) {
+      current = current.next;
+    }
 
-  addAtIndex(index: number, val: number): void {}
+    return current;
+  }
 
-  deleteAtIndex(index: number): void {}
+  addAtHead(val: number): void {
+    this.addAtIndex(0, val);
+  }
+
+  addAtTail(val: number): void {
+    this.addAtIndex(this.size, val);
+  }
+
+  addAtIndex(index: number, val: number): void {
+    if (index < 0 || index > this.size) return;
+    this.size++;
+
+    if (index === 0) {
+      let newNode = new TNode(val, this.head);
+      this.head = newNode;
+      return;
+    }
+
+    let current = this._get(index - 1);
+    let oldNext = current.next;
+    current.next = new TNode(val, oldNext);
+  }
+
+  deleteAtIndex(index: number): void {
+    if (index < 0 || index >= this.size) return;
+    this.size--;
+
+    if (index === 0) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let current = this._get(index - 1);
+    current.next = current?.next?.next;
+  }
 }
+
 
 let myLinkedList = new MyLinkedList();
 myLinkedList.addAtHead(1);
-myLinkedList.addAtTail(3);
-myLinkedList.addAtIndex(1, 2); // linked list becomes 1->2->3
-myLinkedList.get(1); // return 2
-myLinkedList.deleteAtIndex(1); // now the linked list is 1->3
-myLinkedList.get(1); // return 3
+myLinkedList.addAtHead(4);
+myLinkedList.addAtHead(5);
+myLinkedList.addAtIndex(3, 0);
+
+myLinkedList.deleteAtIndex(2);
+myLinkedList.addAtHead(6);
+myLinkedList.addAtTail(7);
+myLinkedList.get(4);
+
