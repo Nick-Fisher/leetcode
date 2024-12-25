@@ -37,9 +37,12 @@ function isValid(s: string): boolean {
     '[': ']',
   };
 
-  for (let i = 0; i < s.length; i++) {
-    if (stack[stack.length - 1] === s[i]) stack.pop();
-    else stack.push(brackets[s[i]]);
+  for (let char of s) {
+    if (brackets[char]) {
+      stack.push(brackets[char]);
+    } else {
+      if (!stack.length || stack.pop() !== char) return false;
+    }
   }
 
   return !stack.length;
