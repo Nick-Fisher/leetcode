@@ -27,9 +27,9 @@ const threeSum = (nums: number[]): number[][] => {
   const result: number[][] = [];
 
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] > 0) break;
+    if (nums[i] > 0) break; // Non negative values can't give in sum 0
 
-    if (i > 0 && nums[i] === nums[i - 1]) continue;
+    if (i > 0 && nums[i] === nums[i - 1]) continue; //prevent same values
 
     let l = i + 1,
         r = nums.length;
@@ -46,7 +46,7 @@ const threeSum = (nums: number[]): number[][] => {
             l++;
             r--;
 
-            while (nums[l] === nums[l - 1] && l < r) {
+            while (nums[l] === nums[l - 1] && l < r) { // if value the same - move left pointer
               l += 1;
             }
         }
