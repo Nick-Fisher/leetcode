@@ -20,17 +20,17 @@
  */
 
 function lengthOfLongestSubstring(s: string): number {
-  let l = 0,
-    ans = 0,
-    curr = new Set();
+  let ans = 0;
+  let l = 0;
+  let window = new Set();
 
   for (let r = 0; r < s.length; r++) {
-    while (curr.has(s[r])) {
-      curr.delete(s[l]);
+    while (window.has(s[r])) {
+      window.delete(s[l]);
       l++;
     }
+    window.add(s[r]);
 
-    curr.add(s[r]);
     ans = Math.max(ans, r - l + 1);
   }
 
