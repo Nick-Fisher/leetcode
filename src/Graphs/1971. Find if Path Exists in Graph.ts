@@ -9,64 +9,105 @@
  *  Time Complexity: O(n), Space Complexity: O(n)
  */
 
-function validPath(n: number, edges: number[][], source: number, destination: number): boolean {
-    let graph = {};
+function validPathDFS(
+  n: number,
+  edges: number[][],
+  source: number,
+  destination: number
+): boolean {
+  let graph = {};
 
-    for (let [a, b] of edges) {
-        graph[a] ? graph[a].push(b) : (graph[a] = [b])
-        graph[b] ? graph[b].push(a) : (graph[b] = [a])
+  for (let [a, b] of edges) {
+    graph[a] ? graph[a].push(b) : (graph[a] = [b]);
+    graph[b] ? graph[b].push(a) : (graph[b] = [a]);
+  }
+
+  let seen = new Set();
+
+  let stack = [source];
+
+  while (stack.length) {
+    let v = stack.pop();
+
+    if (v === destination) {
+      return true;
     }
 
-    let seen = new Set();
-
-    let stack = [source];
-
-    while (stack.length) {
-        let v = stack.pop();
-
-        if (v === destination) {
-            return true;
-        }
-
-        for (let n of graph[v]) {
-            if (!seen.has(n)) {
-                seen.add(n);
-                stack.push(n);
-            }
-        }
+    for (let n of graph[v]) {
+      if (!seen.has(n)) {
+        seen.add(n);
+        stack.push(n);
+      }
     }
+  }
 
-    return false;
-};
+  return false;
+}
 
+function validPathDFS2(
+  n: number,
+  edges: number[][],
+  source: number,
+  destination: number
+): boolean {
+  let graph = new Map<number, number[]>();
 
-function validPath2(n: number, edges: number[][], source: number, destination: number): boolean {
-    let graph = new Map<number, number[]>();
+  for (let [u, v] of edges) {
+    if (!graph.has(u)) graph.set(u, []);
+    if (!graph.has(v)) graph.set(v, []);
 
-    for (let [u, v] of edges) {
-        if (!graph.has(u)) graph.set(u, []);
-        if (!graph.has(v)) graph.set(v, []);
+    graph.get(u)!.push(v);
+    graph.get(v)!.push(u);
+  }
 
-        graph.get(u)!.push(v);
-        graph.get(v)!.push(u);
+  let visited = new Set<number>();
+  let stack = [source];
+
+  while (stack.length) {
+    let current = stack.pop()!;
+
+    if (current === destination) return true;
+
+    if (visited.has(current)) continue;
+
+    visited.add(current);
+
+    for (let neighbour of graph.get(current)!) {
+      stack.push(neighbour);
     }
+  }
 
-    let visited = new Set<number>();
-    let stack = [source];
+  return false;
+}
 
-    while (stack.length) {
-        let current = stack.pop()!;
+function validPathBFS(
+  n: number,
+  edges: number[][],
+  source: number,
+  destination: number
+): boolean {
+  let graph = {};
 
-        if (current === destination) return true;
+  for (let [a, b] of edges) {
+    graph[a] ? graph[a].push(b) : (graph[a] = [b]);
+    graph[b] ? graph[b].push(a) : (graph[b] = [a]);
+  }
 
-        if (visited.has(current)) continue;
+  let seen = new Set();
+  let queue = [source];
 
-        visited.add(current);
+  while (queue.length) {
+    let v = queue.shift();
 
-        for (let neighbour of graph.get(current)!) {
-            stack.push(neighbour);
-        }
+    if (v === destination) return true;
+
+    for (let ngbr of graph[v]) {
+      if (!seen.has(ngbr)) {
+        seen.add(ngbr);
+        queue.push(ngbr);
+      }
     }
+  }
 
-    return false;
+  return false;
 }
