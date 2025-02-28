@@ -23,7 +23,7 @@ function reverseListIterative(head: ListNode | null): ListNode | null {
     current = nextNode;
   }
 
-  return current;
+  return prev;
 }
 
 console.log(
