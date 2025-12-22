@@ -11,6 +11,35 @@
  */
 
 function gcdOfStrings(str1: string, str2: string): string {
+  let minLen = Math.min(str1.length, str2.length);
+
+  for (let prefixLen = minLen; prefixLen > 0; prefixLen--) {
+    let prefix = str1.slice(0, prefixLen);
+
+    if (str1.length % prefix.length !== 0 || str2.length % prefix.length !== 0)
+      continue;
+
+    let isGcd = isDivisible(str1, prefix) && isDivisible(str2, prefix);
+
+    if (isGcd) return prefix;
+  }
+
+  return '';
+
+  function isDivisible(str, prefix) {
+    let stringToCheck = prefix;
+
+    while (stringToCheck.length <= str.length) {
+      if (stringToCheck === str) return true;
+
+      stringToCheck += prefix;
+    }
+
+    return false;
+  }
+}
+
+function gcdOfStrings2(str1: string, str2: string): string {
   if (str1 + str2 !== str2 + str1) return '';
 
   function gcd(a: number, b: number) {

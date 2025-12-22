@@ -14,15 +14,30 @@
  */
 
 function removeDuplicates(nums: number[]): number {
-  let count = 0;
+  let count: number = 1;
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[count] !== nums[i]) {
-      count++;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] !== nums[i - 1]) {
       nums[count] = nums[i];
+      count++;
     }
   }
-  return count + 1;
+
+  return count;
+}
+
+function removeDuplicates2(nums) {
+  let n = nums.length,
+    l = 0,
+    r = 0;
+  while (r < n) {
+    nums[l] = nums[r];
+    while (r < n && nums[r] === nums[l]) {
+      r++;
+    }
+    l++;
+  }
+  return l;
 }
 
 removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]); // Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]

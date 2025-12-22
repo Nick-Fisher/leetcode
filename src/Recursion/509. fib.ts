@@ -11,7 +11,7 @@
 // Naive recursive solution with O(2^n) time complexity
 const fib = (n: number): number => (n < 2 ? n : fib(n - 1) + fib(n - 2));
 
-// Memoization solution with O(n) time complexity using dynamic programming approach
+// Time complexity: O(n), Space complexity: O(n)
 const fib2 = (n: number, memo: number[] = []): number => {
   if (n < 2) return n;
   if (memo[n] !== undefined) return memo[n];
@@ -27,7 +27,7 @@ function fib3(n: number): number {
   );
 }
 
-// Iterative solution with O(n) time complexity
+// Time complexity: O(n), Space complexity: O(1)
 function fib4(n: number): number {
   if (n < 2) return n;
   let output = 1;
